@@ -232,6 +232,9 @@ pvr_vm_mips_unmap(struct pvr_device *pvr_dev, struct pvr_fw_object *fw_obj)
 	for (u32 pfn = start_pfn; pfn < end_pfn; pfn++)
 		WRITE_ONCE(mips_data->pt[pfn], 0);
 
+	if (pvr_dev->lost)
+		return;
+
 	pvr_mmu_flush_request_all(pvr_dev);
 	WARN_ON(pvr_mmu_flush_exec(pvr_dev, true));
 }
