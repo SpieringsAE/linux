@@ -940,7 +940,12 @@
 		pinctrl-names = "default";
 	};
 
-	/* EC @ 0x76 */
+	asus_ec: ec@76 {
+		compatible = "asus,vivobook-s15-ec";
+		reg = <0x76>;
+		/* List of thermal zone names to monitor */
+		thermal-zone-names = "cpu0-0-top-thermal", "gpuss-0-thermal";
+	};
 };
 
 &i2c7 {
