@@ -200,6 +200,20 @@ config HID_ASUS
 	- GL553V series
 	- GL753V series
 
+config HID_ASUS_VIVOBOOK_S15
+	tristate "ASUS Vivobook S15 S5507 keyboard"
+	help
+	  Say Y or M here if you have the ASUS Vivobook S15 S5507 laptop.
+
+	  This driver adds support for the special function keys on the
+	  built-in I2C keyboard, including backlight control, Fn-Lock, and
+	  remapping of brightness keys.
+
+	  Without this driver, the special keys will not work.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called hid-asus-vivobook-s15.
+
 config HID_AUREAL
 	tristate "Aureal"
 	help
