@@ -1214,6 +1214,9 @@
 			dc8200: display@29400000 {
 				compatible = "starfive,jh7110-dc8200", "verisilicon,dc";
 				reg = <0x0 0x29400000 0x0 0x2800>;
+				assigned-clocks = <&voutcrg JH7110_VOUTCLK_DC8200_PIX0>,
+						  <&voutcrg JH7110_VOUTCLK_DC8200_PIX1>;
+				assigned-clock-parents = <&hdmi_phy>, <&hdmi_phy>;
 				clocks = <&voutcrg JH7110_VOUTCLK_DC8200_CORE>,
 					 <&voutcrg JH7110_VOUTCLK_DC8200_AXI>,
 					 <&voutcrg JH7110_VOUTCLK_DC8200_AHB>,
