@@ -6,6 +6,7 @@
 /dts-v1/;
 #include "jh7110-common.dtsi"
 #include <dt-bindings/pwm/pwm.h>
+#include <dt-bindings/interrupt-controller/irq.h>
 
 / {
 	model = "DeepComputing FML13V01";
@@ -18,6 +19,22 @@
 		brightness-levels = <0 255>;
 		default-brightness-level = <127>;
 		num-interpolated-steps = <255>;
+	};
+};
+
+&i2c6 {
+	clock-frequency = <400000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c6_pins>;
+	status = "okay";
+
+	touchpad: hid@2c {
+		compatible = "hid-over-i2c";
+		reg = <0x2c>;
+		hid-descr-addr = <0x0020>;
+		interrupts-extended = <&sysgpio 30 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-0 = <&i2c_hid_pins>;
+		pinctrl-names = "default";
 	};
 };
 
@@ -74,6 +91,15 @@
 };
 
 &sysgpio {
+	i2c_hid_pins: i2c-hid-0 {
+		irq-pins {
+			pinmux = <GPIOMUX(30, GPOUT_LOW,
+					      GPOEN_DISABLE,
+					      GPI_NONE)>;
+			input-enable;
+		};
+	};
+
 	pcie1_pins: pcie1-0 {
 		clkreq-pins {
 			pinmux = <GPIOMUX(29, GPOUT_LOW,
