@@ -557,8 +557,8 @@
 				      "lrck", "bclk_ext", "lrck_ext";
 			resets = <&syscrg JH7110_SYSRST_I2SRX_APB>,
 				 <&syscrg JH7110_SYSRST_I2SRX_BCLK>;
-			dmas = <0>, <&dma 24>;
-			dma-names = "tx", "rx";
+			dmas = <&dma 24>;
+			dma-names = "rx";
 			starfive,syscon = <&sys_syscon 0x18 0x2>;
 			#sound-dai-cells = <0>;
 			status = "disabled";
